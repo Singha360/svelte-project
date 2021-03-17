@@ -1,17 +1,30 @@
 <script lang="ts">
-	import { activeState } from "../store/store";
+	import { getContext } from "svelte";
+	import { activeState } from "../store";
 
-	let clicked = false;
+	export let id = "00";
+	export let inactiveColor = "#fff";
+	export let activeColor = "#000";
+
+	const board = getContext("board") as number[][];
+
+	export let clicked = false;
+
 	$: className = !clicked && $activeState ? "Cell" : "clickedCell";
-	$: clicked ? console.log("Hi") : null;
 
-	$: bgColor = clicked ? "#ff2a2a" : "brown";
+	$: bgColor = clicked ? activeColor : inactiveColor;
 	$: cursor = $activeState ? "pointer" : "not-allowed";
 
 	function clickedCell() {
-		if ($activeState) {
+		let [rowID, columnID] = id.split(":");
+		if ($activeState && clicked === false) {
 			clicked = !clicked;
+			board[rowID][columnID] = 1;
+		} else if ($activeState && clicked === true) {
+			clicked = !clicked;
+			board[rowID][columnID] = 0;
 		}
+		console.log(board);
 	}
 </script>
 
@@ -19,11 +32,11 @@
 	.Cell {
 		z-index: 1;
 		position: relative;
-		border: 5px solid black;
+		border: 1px solid black;
 		align-self: center;
 		justify-self: center;
-		height: 50px;
-		width: 50px;
+		height: 32px;
+		width: 32px;
 		background-color: var(--bgColor);
 		cursor: var(--cursor);
 	}
@@ -31,46 +44,47 @@
 	.Cell:hover {
 		z-index: 2;
 
-		animation: pulse 400ms ease-in-out infinite alternate-reverse;
+		animation: pulse 350ms ease-in-out infinite alternate-reverse;
 	}
 
 	@keyframes pulse {
 		from {
-			height: 55px;
-			width: 55px;
+			height: 35px;
+			width: 35px;
 		}
 		to {
-			height: 60px;
-			width: 60px;
+			height: 40px;
+			width: 40px;
 			box-shadow: 0px 0px 15px 2px black;
 		}
 	}
 
 	.Cell:hover:active {
-		animation: active 75ms ease-in 1 both;
+		animation: active 100ms ease-in 1 both;
 	}
 
 	@keyframes active {
 		to {
-			background-color: #eb3434;
+			background-color: var(--activeColor);
 		}
 	}
 
 	.clickedCell {
 		z-index: 1;
 		position: relative;
-		border: 5px solid black;
+		border: 1px solid black;
 		align-self: center;
 		justify-self: center;
-		height: 50px;
-		width: 50px;
+		height: 32px;
+		width: 32px;
 		background-color: var(--bgColor);
 		cursor: var(--cursor);
 	}
 </style>
 
 <div
+	id="{id.toString()}"
 	class="{className}"
 	on:click="{clickedCell}"
-	style="--cursor:{cursor}; --bgColor:{bgColor};"
+	style="--cursor:{cursor}; --bgColor:{bgColor}; --activeColor:{activeColor}"
 ></div>

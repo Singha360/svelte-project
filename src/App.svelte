@@ -1,15 +1,21 @@
 <script lang="ts">
-	import GameBoard from "./components/GameBoard.svelte";
-	import Dice from "./components/Dice.svelte";
-	import { activeState } from "./store/store";
+	import { GameBoard, DiceContainer } from "./components";
+
+	import { activeState, diceState } from "./store";
 
 	function activate() {
-		activeState.set(!$activeState);
+		activeState.update((value) => {
+			return !value;
+		});
 	}
+
+	console.log($diceState.dices);
 </script>
 
 <style>
 	:global(body) {
+		background-color: #eafdf8;
+		min-height: 100%;
 		margin: 0;
 		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
 			"Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
@@ -17,10 +23,21 @@
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 	}
+
+	.GameBoard {
+		display: flex;
+		justify-content: center;
+	}
 </style>
 
 <main class="App">
-	<button on:click="{activate}">{$activeState ? "Deactivate" : "Activate"}
-	</button>
-	<GameBoard numOfCell="{100}" columns="{10}" />
+	<div class="button">
+		<button on:click="{activate}">
+			{$activeState ? "Deactivate" : "Activate"}
+		</button>
+	</div>
+	<div class="GameBoard">
+		<GameBoard rows="{25}" columns="{24}" />
+	</div>
+	<DiceContainer />
 </main>
