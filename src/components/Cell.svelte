@@ -83,7 +83,7 @@
 </style>
 
 <div
-	id="{id.toString()}"
+	id="{id}"
 	class="{className}"
 	on:click="{clickedCell}"
 	style="--cursor:{cursor}; --bgColor:{bgColor}; --activeColor:{activeColor}"
