@@ -8,8 +8,6 @@
 			return !value;
 		});
 	}
-
-	console.log($diceState.dices);
 </script>
 
 <style>

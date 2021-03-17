@@ -33,7 +33,7 @@
 					$diceState.value += value;
 				}
 				isActive = false;
-				console.log(`Dices value: ${$diceState}`);
+				console.log(`Dices value: ${$diceState.value}`);
 			}, 500);
 		}
 	}
