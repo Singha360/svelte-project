@@ -2,7 +2,7 @@
 	import { getContext } from "svelte";
 	import { activeState } from "../store";
 
-	export let id = "00";
+	export let id = "";
 	export let inactiveColor = "#fff";
 	export let activeColor = "#000";
 
