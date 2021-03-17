@@ -7,7 +7,7 @@ export const diceState = writable({
 	value: 0
 });
 
-export const bitBoard = (rows, columns) => {
+export const bitBoard = (rows: number, columns: number) => {
 	const bitBoard = Array.from(Array(rows), () => new Array(columns).fill(0));
 	return writable(bitBoard);
 };
