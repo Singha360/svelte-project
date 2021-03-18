@@ -1,14 +1,12 @@
 <script lang="ts">
-	import { getContext } from "svelte";
-	import { activeState } from "../store";
+	import { activeState, bitBoard } from "../store";
 
-	export let id = "";
+	export let rowID = 0;
+	export let columnID = 0;
 	export let inactiveColor = "#fff";
 	export let activeColor = "#000";
 
-	const board = getContext("board") as number[][];
-
-	export let clicked = false;
+	$: clicked = $bitBoard[rowID][columnID] ? true : false;
 
 	$: className = !clicked && $activeState ? "Cell" : "clickedCell";
 
@@ -16,15 +14,16 @@
 	$: cursor = $activeState ? "pointer" : "not-allowed";
 
 	function clickedCell() {
-		let [rowID, columnID] = id.split(":");
+		console.log(`(${rowID}:${columnID})`);
+
 		if ($activeState && clicked === false) {
-			clicked = !clicked;
-			board[rowID][columnID] = 1;
+			$bitBoard[rowID][columnID] = 1;
+			clicked = Boolean($bitBoard[rowID][columnID]);
 		} else if ($activeState && clicked === true) {
-			clicked = !clicked;
-			board[rowID][columnID] = 0;
+			$bitBoard[rowID][columnID] = 0;
+			clicked = Boolean($bitBoard[rowID][columnID]);
 		}
-		console.log(board);
+		console.log($bitBoard);
 	}
 </script>
 
@@ -83,7 +82,7 @@
 </style>
 
 <div
-	id="{id}"
+	id="{`${rowID},${columnID}`}"
 	class="{className}"
 	on:click="{clickedCell}"
 	style="--cursor:{cursor}; --bgColor:{bgColor}; --activeColor:{activeColor}"

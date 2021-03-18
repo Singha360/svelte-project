@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { diceState } from "../store";
+
 	let sound = new Audio("../assets/public_roll.ogg");
 
 	export let id = 0;
@@ -8,7 +9,7 @@
 
 	$diceState.dices.push({ id, value });
 
-	let roll;
+	let roll: number;
 
 	function rollDice() {
 		$diceState.value = 0;
@@ -48,6 +49,3 @@
 	alt="dice{value}"
 	on:click="{rollDice}"
 />
-<!-- <button on:click="{rollDice}"
-	>{#if $diceState.isActive}Stop Rolling{:else}Roll Dice{/if}</button
-> -->

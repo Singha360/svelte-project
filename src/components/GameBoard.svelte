@@ -1,14 +1,12 @@
 <script lang="ts">
-	import Cell from "./Cell.svelte";
 	import { bitBoard } from "../store";
-	import { setContext } from "svelte";
+
+	import Cell from "./Cell.svelte";
 
 	export let columns: number;
 	export let rows: number;
 
-	const board = bitBoard(rows, columns);
-
-	setContext("board", $board);
+	$bitBoard = Array.from(Array(rows), () => new Array(columns).fill(0));
 </script>
 
 <style>
@@ -22,10 +20,11 @@
 </style>
 
 <div class="GameBoard" style="--columns:{columns}">
-	{#each $board as row, rowID}
+	{#each $bitBoard as row, rowID}
 		{#each row as _, columnID}
 			<Cell
-				id="{rowID.toString() + ':' + columnID.toString()}"
+				rowID="{rowID}"
+				columnID="{columnID}"
 				inactiveColor="#ddc8c4"
 				activeColor="#6b4d57"
 			/>

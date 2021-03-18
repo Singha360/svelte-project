@@ -1,7 +1,7 @@
 <script lang="ts">
-	import { GameBoard, DiceContainer } from "./components";
+	import { activeState } from "./store";
 
-	import { activeState, diceState } from "./store";
+	import { GameBoard, DiceContainer } from "./components";
 
 	function activate() {
 		activeState.update((value) => {

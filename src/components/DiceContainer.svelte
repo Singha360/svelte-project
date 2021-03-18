@@ -1,15 +1,12 @@
 <script>
 	import Dice from "./Dice.svelte";
 
-	const dices = [
-		{ id: 0, value: 1 },
-		{ id: 1, value: 2 }
-	];
+	function rollDices() {}
 </script>
 
 <div class="Dice">
-	{#each dices as dice, i}
-		<Dice {...dice} />
+	{#each new Array(2) as _, id}
+		<Dice id="{id}" value="{1}" />
 	{/each}
-	<button class="roll">Roll</button>
+	<button class="roll" on:click="{rollDices}">Roll</button>
 </div>
