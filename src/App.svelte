@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { gameState } from "./store";
-	import { GameBoard, DiceContainer } from "./components";
+	import { GameBoard, SidePanel } from "./components";
 
 	$: playerActive = $gameState.playerActive;
 
@@ -26,11 +26,6 @@
 		display: flex;
 		justify-content: center;
 	}
-
-	.DiceContainer {
-		display: flex;
-		justify-content: flex-end;
-	}
 </style>
 
 <main class="App">
@@ -42,7 +37,5 @@
 	<div class="GameBoard">
 		<GameBoard rows="{25}" columns="{24}" />
 	</div>
-	<div class="DiceContainer">
-		<DiceContainer numOfDice="{2}" showButton="{true}" />
-	</div>
+	<SidePanel />
 </main>

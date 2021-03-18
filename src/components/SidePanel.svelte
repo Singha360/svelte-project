@@ -3,8 +3,14 @@
 </script>
 
 <style>
+	.DiceContainer {
+		display: flex;
+		justify-content: flex-end;
+	}
 </style>
 
 <div class="SidePanel">
-	<DiceContainer />
+	<div class="DiceContainer">
+		<DiceContainer numOfDice="{2}" showButton="{true}" />
+	</div>
 </div>

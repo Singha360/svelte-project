@@ -59,5 +59,6 @@
 	src="../assets/images/dice{value}.svg"
 	alt="dice{value}"
 	height="{112}"
+	draggable="{false}"
 	on:click="{onClick}"
 />
