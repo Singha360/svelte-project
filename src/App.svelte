@@ -1,13 +1,6 @@
 <script lang="ts">
 	import { gameState } from "./store";
 	import { GameBoard, SidePanel } from "./components";
-
-	$: playerActive = $gameState.playerActive;
-
-	function activate() {
-		$gameState.playerActive = !$gameState.playerActive;
-		console.log($gameState);
-	}
 </script>
 
 <style>
@@ -30,9 +23,8 @@
 
 <main class="App">
 	<div class="button">
-		<button on:click="{activate}">
-			{playerActive ? "Deactivate" : "Activate"}
-		</button>
+		<input type="checkbox" bind:checked="{$gameState.playerActive}" />
+		{$gameState.playerActive ? "Activated" : "Deactivated"}
 	</div>
 	<div class="GameBoard">
 		<GameBoard rows="{25}" columns="{24}" />

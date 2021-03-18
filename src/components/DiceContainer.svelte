@@ -1,4 +1,5 @@
 <script>
+	import { diceState } from "../store";
 	import { onMount } from "svelte";
 	let sound = new Audio("../assets/sounds/public_roll.ogg");
 
@@ -15,33 +16,30 @@
 		if (active === false) {
 			active = !active;
 			sound.play();
+			child.forEach((element) => {
+				element.rollDice();
+			});
 			setTimeout(() => {
 				sound.pause();
 				sound.currentTime = 0;
 				active = !active;
+				console.log(`Dice value: ${$diceState.value}`);
 			}, 500);
-			child.forEach((element) => {
-				element.rollDice();
-			});
 		}
 	}
-
-	onMount(() => {
-		console.log(child);
-	});
 </script>
 
 <style>
 	.DiceContainer {
 		display: flex;
 		justify-content: center;
+		height: min-content;
 		margin: 0px;
 		padding: 5px;
 		border: 5px;
 		border-style: solid;
 		border-color: black;
 		border-radius: 20px;
-		overflow: hidden;
 	}
 </style>
 

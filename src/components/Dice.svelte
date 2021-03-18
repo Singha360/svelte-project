@@ -20,8 +20,6 @@
 	}
 
 	export function rollDice() {
-		$diceState.value = 0;
-
 		if (!isActive) {
 			isActive = true;
 			roll = setInterval(() => {
@@ -34,14 +32,17 @@
 			}, 50);
 
 			setTimeout(() => {
+				$diceState.value = 0;
 				sound.pause();
 				sound.currentTime = 0;
 				clearInterval(roll);
 				for ({ value } of $diceState.dice) {
 					$diceState.value += value;
 				}
+				if (clickable) {
+					console.log(`Dice value: ${$diceState.value}`);
+				}
 				isActive = false;
-				console.log(`Dice value: ${$diceState.value}`);
 			}, 500);
 		}
 	}
