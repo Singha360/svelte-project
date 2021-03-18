@@ -1,12 +1,12 @@
 <script>
 	import Dice from "./Dice.svelte";
 
-	function rollDices() {}
+	function rollDice() {}
 </script>
 
-<div class="Dice">
+<div class="DiceContainer">
 	{#each new Array(2) as _, id}
 		<Dice id="{id}" value="{1}" />
 	{/each}
-	<button class="roll" on:click="{rollDices}">Roll</button>
+	<button class="roll" on:click="{rollDice}">Roll</button>
 </div>

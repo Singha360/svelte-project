@@ -7,7 +7,7 @@
 	export let value = 1;
 	let isActive = false;
 
-	$diceState.dices.push({ id, value });
+	$diceState.dice.push({ id, value });
 
 	let roll: number;
 
@@ -19,7 +19,7 @@
 			roll = setInterval(() => {
 				sound.play();
 				value = Math.floor(Math.random() * 6) + 1;
-				$diceState.dices.forEach((dice) => {
+				$diceState.dice.forEach((dice) => {
 					if (dice.id == id) {
 						dice.value = value;
 					}
@@ -30,11 +30,11 @@
 				sound.pause();
 				sound.currentTime = 0;
 				clearInterval(roll);
-				for ({ value } of $diceState.dices) {
+				for ({ value } of $diceState.dice) {
 					$diceState.value += value;
 				}
 				isActive = false;
-				console.log(`Dices value: ${$diceState.value}`);
+				console.log(`Dice value: ${$diceState.value}`);
 			}, 500);
 		}
 	}

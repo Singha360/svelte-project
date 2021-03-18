@@ -3,7 +3,7 @@ import { Writable, writable } from "svelte/store";
 export const activeState = writable(true);
 
 export const diceState = writable({
-	dices: [],
+	dice: [],
 	value: 0
 });
 
