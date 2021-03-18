@@ -1,6 +1,8 @@
 import { Writable, writable } from "svelte/store";
 
-export const activeState = writable(true);
+export const gameState = writable({
+	playerActive: true
+});
 
 export const diceState = writable({
 	dice: [],

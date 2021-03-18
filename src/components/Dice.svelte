@@ -1,23 +1,30 @@
 <script lang="ts">
 	import { diceState } from "../store";
-
-	let sound = new Audio("../assets/public_roll.ogg");
+	let sound = new Audio("../assets/sounds/public_roll.ogg");
 
 	export let id = 0;
 	export let value = 1;
+	export let clickable = true;
+
 	let isActive = false;
 
 	$diceState.dice.push({ id, value });
 
 	let roll: number;
 
-	function rollDice() {
+	function onClick() {
+		if (clickable) {
+			sound.play();
+			rollDice();
+		}
+	}
+
+	export function rollDice() {
 		$diceState.value = 0;
 
 		if (!isActive) {
 			isActive = true;
 			roll = setInterval(() => {
-				sound.play();
 				value = Math.floor(Math.random() * 6) + 1;
 				$diceState.dice.forEach((dice) => {
 					if (dice.id == id) {
@@ -41,11 +48,16 @@
 </script>
 
 <style>
+	.Dice {
+		background-color: white;
+	}
 </style>
 
 <img
+	class="Dice"
 	id="{id.toString()}"
-	src="../assets/dice{value}.png"
+	src="../assets/images/dice{value}.svg"
 	alt="dice{value}"
-	on:click="{rollDice}"
+	height="{112}"
+	on:click="{onClick}"
 />

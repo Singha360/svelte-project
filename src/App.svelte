@@ -1,12 +1,12 @@
 <script lang="ts">
-	import { activeState } from "./store";
-
+	import { gameState } from "./store";
 	import { GameBoard, DiceContainer } from "./components";
 
+	$: playerActive = $gameState.playerActive;
+
 	function activate() {
-		activeState.update((value) => {
-			return !value;
-		});
+		$gameState.playerActive = !$gameState.playerActive;
+		console.log($gameState);
 	}
 </script>
 
@@ -26,16 +26,23 @@
 		display: flex;
 		justify-content: center;
 	}
+
+	.DiceContainer {
+		display: flex;
+		justify-content: flex-end;
+	}
 </style>
 
 <main class="App">
 	<div class="button">
 		<button on:click="{activate}">
-			{$activeState ? "Deactivate" : "Activate"}
+			{playerActive ? "Deactivate" : "Activate"}
 		</button>
 	</div>
 	<div class="GameBoard">
 		<GameBoard rows="{25}" columns="{24}" />
 	</div>
-	<DiceContainer />
+	<div class="DiceContainer">
+		<DiceContainer numOfDice="{2}" showButton="{true}" />
+	</div>
 </main>

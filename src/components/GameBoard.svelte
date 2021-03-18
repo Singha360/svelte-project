@@ -11,7 +11,6 @@
 
 <style>
 	.GameBoard {
-		padding: 10px;
 		z-index: 0;
 		display: grid;
 		grid-auto-rows: 33px;

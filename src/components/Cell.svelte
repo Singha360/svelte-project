@@ -1,5 +1,7 @@
 <script lang="ts">
-	import { activeState, bitBoard } from "../store";
+	import { gameState, bitBoard } from "../store";
+
+	$: playerActive = $gameState.playerActive;
 
 	export let rowID = 0;
 	export let columnID = 0;
@@ -8,22 +10,29 @@
 
 	$: clicked = $bitBoard[rowID][columnID] ? true : false;
 
-	$: className = !clicked && $activeState ? "Cell" : "clickedCell";
+	$: className = !clicked && playerActive ? "Cell" : "clickedCell";
 
 	$: bgColor = clicked ? activeColor : inactiveColor;
-	$: cursor = $activeState ? "pointer" : "not-allowed";
+	$: cursor = playerActive ? "pointer" : "not-allowed";
 
 	function clickedCell() {
 		console.log(`(${rowID}:${columnID})`);
 
-		if ($activeState && clicked === false) {
-			$bitBoard[rowID][columnID] = 1;
-			clicked = Boolean($bitBoard[rowID][columnID]);
-		} else if ($activeState && clicked === true) {
-			$bitBoard[rowID][columnID] = 0;
-			clicked = Boolean($bitBoard[rowID][columnID]);
+		if (playerActive) {
+			switch (clicked) {
+				case false:
+					$bitBoard[rowID][columnID] = 1;
+					clicked = Boolean($bitBoard[rowID][columnID]);
+					break;
+
+				case true:
+					$bitBoard[rowID][columnID] = 0;
+					clicked = Boolean($bitBoard[rowID][columnID]);
+					break;
+			}
+
+			console.log($bitBoard);
 		}
-		console.log($bitBoard);
 	}
 </script>
 
