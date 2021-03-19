@@ -63,7 +63,7 @@
 		to {
 			height: 40px;
 			width: 40px;
-			box-shadow: 0px 0px 15px 2px black;
+			box-shadow: -5px 10px 15px 2px rgba(0, 0, 0, 0.5);
 		}
 	}
 

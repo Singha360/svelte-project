@@ -51,6 +51,7 @@
 <style>
 	.Dice {
 		background-color: white;
+		border-radius: 15px;
 	}
 </style>
 

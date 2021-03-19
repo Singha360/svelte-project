@@ -15,6 +15,7 @@
 		display: grid;
 		grid-auto-rows: 33px;
 		grid-template-columns: repeat(var(--columns), 33px);
+		box-shadow: -10px 15px 10px rgba(0, 0, 0, 0.5);
 	}
 </style>
 

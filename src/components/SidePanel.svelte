@@ -4,6 +4,7 @@
 
 <style>
 	.SidePanel {
+		background-color: #bbdfc5;
 		height: 100%;
 		width: fit-content;
 		position: fixed;
@@ -11,13 +12,9 @@
 		top: 0;
 		right: 0;
 		overflow-x: hidden;
-		padding-top: 20px;
+		padding: 10px;
 		display: flex;
-	}
-
-	.DiceContainer {
-		display: flex;
-		justify-content: flex-end;
+		box-shadow: -20px 0px 10px rgba(0, 0, 0, 0.5);
 	}
 </style>
 
