@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { gameState } from "./store";
+	import { diceState, gameState } from "./store";
 	import { GameBoard, SidePanel } from "./components";
 </script>
 
@@ -24,7 +24,11 @@
 <main class="App">
 	<div class="button">
 		<input type="checkbox" bind:checked="{$gameState.playerActive}" />
-		{$gameState.playerActive ? "Activated" : "Deactivated"}
+		Activate Cells
+	</div>
+	<div class="button">
+		<input type="checkbox" bind:checked="{$gameState.showPanel}" />
+		Show Panel
 	</div>
 	<div class="GameBoard">
 		<GameBoard rows="{25}" columns="{24}" />

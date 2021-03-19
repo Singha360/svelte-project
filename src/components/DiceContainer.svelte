@@ -1,16 +1,17 @@
 <script>
-	import { diceState } from "../store";
 	import { onMount } from "svelte";
+
+	import { diceState } from "../store";
 	let sound = new Audio("../assets/sounds/public_roll.ogg");
 
 	import Dice from "./Dice.svelte";
 
-	export let numOfDice = 1;
+	export let numberOfDice = 1;
 	export let showButton = false;
 
 	let active = false;
 
-	let child = new Array(numOfDice);
+	let child = new Array(numberOfDice);
 
 	function rollDice() {
 		if (active === false) {
@@ -27,6 +28,22 @@
 			}, 500);
 		}
 	}
+
+	onMount(() => {
+		if ($diceState.dice.length !== 0) {
+			const tempSet = new Set();
+			const tempArr = [];
+
+			for (const die of $diceState.dice) {
+				tempSet.add(JSON.stringify(die));
+			}
+
+			for (const die of tempSet) {
+				tempArr.push(JSON.parse(die));
+			}
+			$diceState.dice = tempArr;
+		}
+	});
 </script>
 
 <style>
@@ -77,8 +94,13 @@
 
 <div class="DiceContainer">
 	<div class="DiceBox">
-		{#each new Array(numOfDice) as _, id}
-			<Dice id="{id}" value="{1}" clickable="{false}" bind:this="{child[id]}" />
+		{#each new Array(numberOfDice) as _, id}
+			<Dice
+				id="{id}"
+				value="{$diceState.dice[id] ? $diceState.dice[id].value : 1}"
+				clickable="{showButton ? false : true}"
+				bind:this="{child[id]}"
+			/>
 		{/each}
 	</div>
 	<div class="Value">

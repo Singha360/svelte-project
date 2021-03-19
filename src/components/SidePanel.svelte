@@ -1,4 +1,7 @@
 <script>
+	import { fly } from "svelte/transition";
+
+	import { gameState } from "../store";
 	import DiceContainer from "./DiceContainer.svelte";
 </script>
 
@@ -18,8 +21,10 @@
 	}
 </style>
 
-<div class="SidePanel">
-	<div class="DiceContainer">
-		<DiceContainer numOfDice="{2}" showButton="{true}" />
+{#if $gameState.showPanel}
+	<div class="SidePanel" transition:fly="{{ x: 250, duration: 1000 }}">
+		<div class="DiceContainer">
+			<DiceContainer numberOfDice="{2}" showButton="{true}" />
+		</div>
 	</div>
-</div>
+{/if}

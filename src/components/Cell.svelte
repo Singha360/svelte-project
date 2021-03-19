@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { gameState, bitBoard } from "../store";
+	import { gameState, bitBoard, diceState } from "../store";
 
 	$: playerActive = $gameState.playerActive;
 
