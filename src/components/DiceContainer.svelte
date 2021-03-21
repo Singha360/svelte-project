@@ -9,6 +9,8 @@
 	export let numberOfDice = 1;
 	export let showButton = false;
 
+	let clickable = showButton ? false : true;
+
 	let active = false;
 
 	let child = new Array(numberOfDice);
@@ -28,22 +30,6 @@
 			}, 500);
 		}
 	}
-
-	onMount(() => {
-		if ($diceState.dice.length !== 0) {
-			const tempSet = new Set();
-			const tempArr = [];
-
-			for (const die of $diceState.dice) {
-				tempSet.add(JSON.stringify(die));
-			}
-
-			for (const die of tempSet) {
-				tempArr.push(JSON.parse(die));
-			}
-			$diceState.dice = tempArr;
-		}
-	});
 </script>
 
 <style>
@@ -72,7 +58,6 @@
 		border-style: solid;
 		border-color: #6b4d57;
 		border-radius: 25px;
-		outline: none;
 	}
 
 	.Button:active {
@@ -98,7 +83,7 @@
 			<Dice
 				id="{id}"
 				value="{$diceState.dice[id] ? $diceState.dice[id].value : 1}"
-				clickable="{showButton ? false : true}"
+				bind:clickable
 				bind:this="{child[id]}"
 			/>
 		{/each}

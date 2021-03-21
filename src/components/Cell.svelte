@@ -51,7 +51,8 @@
 
 	.Cell:hover {
 		z-index: 2;
-
+		transition: background-color 75ms;
+		transition-timing-function: ease-in;
 		animation: pulse 350ms ease-in-out infinite alternate-reverse;
 	}
 
@@ -59,22 +60,21 @@
 		from {
 			height: 35px;
 			width: 35px;
+			transition: height 75ms, width 75ms;
 		}
 		to {
 			height: 40px;
 			width: 40px;
+			transition: height 75ms, width 75ms;
 			box-shadow: -5px 10px 15px 2px rgba(0, 0, 0, 0.5);
 		}
 	}
 
-	.Cell:hover:active {
-		animation: active 100ms ease-in 1 both;
-	}
-
-	@keyframes active {
-		to {
-			background-color: var(--activeColor);
-		}
+	.Cell:active {
+		height: 32px;
+		width: 32px;
+		background-color: var(--activeColor);
+		animation: none;
 	}
 
 	.clickedCell {
