@@ -9,13 +9,11 @@
 		flex-direction: column;
 		height: 100%;
 		width: 250px;
-		background-color: #bbdfc5;
 		box-shadow: -20px 0px 10px rgba(0, 0, 0, 0.5);
 		position: fixed;
 		z-index: 1;
-		top: 0;
 		right: 0;
-		padding: 10px;
+		padding: 10px 10px;
 		user-select: none;
 		transition: right ease-in-out 0.35s, box-shadow ease-in 0.25s;
 	}
@@ -25,17 +23,17 @@
 	}
 
 	:not(#ShowHideCheck:checked) ~ .SidePanel {
+		position: absolute;
 		right: -270px;
 		box-shadow: none;
 	}
 
 	label[for="ShowHideCheck"] {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
 		position: absolute;
-		top: 50vh;
-		right: 80%;
+		margin: -10px;
+		width: fit-content;
+		transform: translate(-50%, -50%);
+		top: 50%;
 	}
 
 	.ShowHide {
@@ -46,6 +44,26 @@
 		cursor: pointer;
 		margin: 0;
 	}
+
+	.DiceContainer {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.Glass {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: -1;
+		/* background: red;
+		background: linear-gradient(
+			to right bottom,
+			rgba(255, 255, 255, 0.7),
+			rgba(255, 255, 255, 0.3)
+		); */
+	}
 </style>
 
 <input
@@ -54,6 +72,7 @@
 	bind:checked="{$gameState.showPanel}"
 />
 <div class="SidePanel">
+	<div class="Glass"></div>
 	<div class="DiceContainer">
 		<DiceContainer numberOfDice="{2}" showButton="{true}" />
 	</div>

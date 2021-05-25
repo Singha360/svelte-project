@@ -7,6 +7,8 @@
 	export let rows: number;
 
 	$bitBoard = Array.from(Array(rows), () => new Array(columns).fill(0));
+
+	function findPath() {}
 </script>
 
 <style>
@@ -22,12 +24,7 @@
 <div class="GameBoard" style="--columns:{columns}">
 	{#each $bitBoard as row, rowID}
 		{#each row as _, columnID}
-			<Cell
-				rowID="{rowID}"
-				columnID="{columnID}"
-				inactiveColor="#ddc8c4"
-				activeColor="#6b4d57"
-			/>
+			<Cell {rowID} {columnID} inactiveColor="#ddc8c4" activeColor="#6b4d57" />
 		{/each}
 	{/each}
 </div>

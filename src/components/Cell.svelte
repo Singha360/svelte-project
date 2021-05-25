@@ -1,16 +1,17 @@
 <script lang="ts">
 	import { gameState, bitBoard, diceState } from "../store";
 
-	$: playerActive = $gameState.playerActive;
-
 	export let rowID = 0;
 	export let columnID = 0;
 	export let inactiveColor = "#fff";
 	export let activeColor = "#000";
+	export let highlight = false;
+
+	$: playerActive = $gameState.playerActive;
 
 	$: clicked = $bitBoard[rowID][columnID] ? true : false;
 
-	$: className = !clicked && playerActive ? "Cell" : "clickedCell";
+	$: className = !clicked && playerActive ? "Cell" : "Cell-Clicked";
 
 	$: bgColor = clicked ? activeColor : inactiveColor;
 	$: cursor = playerActive ? "pointer" : "not-allowed";
@@ -47,25 +48,24 @@
 		width: 32px;
 		background-color: var(--bgColor);
 		cursor: var(--cursor);
+		filter: opacity(100%);
 	}
 
 	.Cell:hover {
 		z-index: 2;
-		transition: background-color 75ms;
-		transition-timing-function: ease-in;
-		animation: pulse 350ms ease-in-out infinite alternate-reverse;
+		transition: background-color 75ms ease-out;
+		animation: pulse 300ms ease-in-out infinite alternate-reverse;
 	}
 
 	@keyframes pulse {
 		from {
 			height: 35px;
 			width: 35px;
-			transition: height 75ms, width 75ms;
 		}
 		to {
 			height: 40px;
 			width: 40px;
-			transition: height 75ms, width 75ms;
+
 			box-shadow: -5px 10px 15px 2px rgba(0, 0, 0, 0.5);
 		}
 	}
@@ -77,7 +77,7 @@
 		animation: none;
 	}
 
-	.clickedCell {
+	.Cell-Clicked {
 		z-index: 1;
 		position: relative;
 		border: 1px solid black;
@@ -91,8 +91,7 @@
 </style>
 
 <div
-	id="{`${rowID},${columnID}`}"
-	class="{className}"
-	on:click="{clickedCell}"
-	style="--cursor:{cursor}; --bgColor:{bgColor}; --activeColor:{activeColor}"
-></div>
+	id={`${rowID},${columnID}`}
+	class={className}
+	on:click={clickedCell}
+	style="--cursor:{cursor}; --bgColor:{bgColor}; --activeColor:{activeColor}" />

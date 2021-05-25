@@ -1,11 +1,11 @@
-<script>
+<script lang="ts">
 	import { onMount } from "svelte";
 
 	import { diceState } from "../store";
-	let sound = new Audio("../assets/sounds/public_roll.ogg");
+	import soundData from "../assets/sounds/public_roll.ogg";
+	const sound = new Audio(soundData);
 
 	import Dice from "./Dice.svelte";
-
 	export let numberOfDice = 1;
 	export let showButton = false;
 
@@ -40,9 +40,7 @@
 
 	.DiceBox {
 		display: flex;
-		height: min-content;
-		width: min-content;
-		margin: 0px;
+		justify-content: space-around;
 		padding: 5px;
 		border: 5px;
 		border-style: solid;
@@ -58,6 +56,7 @@
 		border-style: solid;
 		border-color: #6b4d57;
 		border-radius: 25px;
+		cursor: pointer;
 	}
 
 	.Button:active {
@@ -81,17 +80,18 @@
 	<div class="DiceBox">
 		{#each new Array(numberOfDice) as _, id}
 			<Dice
-				id="{id}"
-				value="{$diceState.dice[id] ? $diceState.dice[id].value : 1}"
+				{id}
+				value={$diceState.dice[id] ? $diceState.dice[id].value : 1}
 				bind:clickable
-				bind:this="{child[id]}"
-			/>
+				bind:this={child[id]} />
 		{/each}
 	</div>
 	<div class="Value">
 		{$diceState.value}
 	</div>
 	{#if showButton}
-		<button class="Button" on:click="{rollDice}">Roll</button>
+		<button class="Button" on:click={rollDice}>Roll</button>
 	{/if}
 </div>
+
+<div />

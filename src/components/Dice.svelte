@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { diceState } from "../store";
-	let sound = new Audio("../assets/sounds/public_roll.ogg");
+	import soundData from "../assets/sounds/public_roll.ogg";
+
+	const sound = new Audio(soundData);
 
 	export let id = 0;
 	export let value = 1;
@@ -10,7 +12,7 @@
 
 	$diceState.dice.push({ id, value });
 
-	let roll: number;
+	let roll: NodeJS.Timeout;
 
 	function onClick() {
 		if (clickable) {
@@ -57,10 +59,9 @@
 
 <img
 	class="Dice"
-	id="{id.toString()}"
-	src="../assets/images/dice{value}.svg"
+	id={id.toString()}
+	src="/images/dice{value}.svg"
 	alt="dice{value}"
-	height="{112}"
-	draggable="{false}"
-	on:click="{onClick}"
-/>
+	height={112}
+	draggable={false}
+	on:click={onClick} />

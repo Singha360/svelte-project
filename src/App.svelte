@@ -20,37 +20,38 @@
 		outline: none;
 	}
 
-	.App {
+	main {
+		/* position: absolute; */
 	}
 
 	.Checkboxes {
-		/* display: flex;
-		flex-direction: column;
-		float: left; */
+		float: left;
 	}
 
 	.Checkbox {
 	}
 
-	.GameBoard {
-		/* position: absolute; */
-		/* justify-content: center; */
-		display: flex;
-		justify-content: center;
+	.GameBoard-Container {
+		position: absolute;
+		display: grid;
+		place-items: center;
+		height: 100vh;
+		width: 100vw;
+		z-index: -1;
 	}
 </style>
 
-<main class="App">
+<main>
 	<div class="Checkboxes">
 		<input
 			type="checkbox"
 			class="Checkbox"
-			bind:checked="{$gameState.playerActive}"
+			bind:checked={$gameState.playerActive}
 		/>
 		Activate Cells
 	</div>
-	<div class="GameBoard">
-		<GameBoard rows="{25}" columns="{24}" />
+	<div class="GameBoard-Container">
+		<GameBoard rows={25} columns={24} />
 	</div>
 	<SidePanel />
 </main>
