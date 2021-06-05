@@ -52,14 +52,19 @@
 		height: 50px;
 		width: 100%;
 		background-color: #ddc8c4;
-		border: 2.5px;
-		border-style: solid;
-		border-color: #6b4d57;
+		border: 0;
 		border-radius: 25px;
 		cursor: pointer;
+		filter: brightness(110%);
+		transition: all ease-in-out 75ms;
+	}
+
+	.Button:hover {
+		border: 2px solid #6b4d57;
 	}
 
 	.Button:active {
+		filter: brightness(90%);
 	}
 
 	@keyframes clicked {

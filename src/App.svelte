@@ -20,15 +20,8 @@
 		outline: none;
 	}
 
-	main {
-		/* position: absolute; */
-	}
-
 	.Checkboxes {
 		float: left;
-	}
-
-	.Checkbox {
 	}
 
 	.GameBoard-Container {
@@ -41,17 +34,14 @@
 	}
 </style>
 
-<main>
-	<div class="Checkboxes">
-		<input
-			type="checkbox"
-			class="Checkbox"
-			bind:checked={$gameState.playerActive}
-		/>
-		Activate Cells
-	</div>
-	<div class="GameBoard-Container">
-		<GameBoard rows={25} columns={24} />
-	</div>
-	<SidePanel />
-</main>
+<div class="Checkboxes">
+	<input
+		type="checkbox"
+		class="Checkbox"
+		bind:checked={$gameState.playerActive} />
+	Activate Cells
+</div>
+<div class="GameBoard-Container">
+	<GameBoard rows={25} columns={24} />
+</div>
+<SidePanel />

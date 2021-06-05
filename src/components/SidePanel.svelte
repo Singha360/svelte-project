@@ -7,7 +7,7 @@
 	.SidePanel {
 		display: flex;
 		flex-direction: column;
-		height: 100%;
+		height: 100vh;
 		width: 250px;
 		box-shadow: -20px 0px 10px rgba(0, 0, 0, 0.5);
 		position: fixed;
@@ -66,17 +66,13 @@
 	}
 </style>
 
-<input
-	id="ShowHideCheck"
-	type="checkbox"
-	bind:checked="{$gameState.showPanel}"
-/>
+<input id="ShowHideCheck" type="checkbox" bind:checked={$gameState.showPanel} />
 <div class="SidePanel">
-	<div class="Glass"></div>
+	<div class="Glass" />
 	<div class="DiceContainer">
-		<DiceContainer numberOfDice="{2}" showButton="{true}" />
+		<DiceContainer numberOfDice={2} showButton={true} />
 	</div>
 	<label for="ShowHideCheck">
-		<div class="ShowHide"></div>
+		<div class="ShowHide" />
 	</label>
 </div>
