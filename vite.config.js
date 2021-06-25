@@ -1,4 +1,4 @@
-import svelte from "@sveltejs/vite-plugin-svelte";
+import { svelte } from "@sveltejs/vite-plugin-svelte";
 import tsconfigPaths from "vite-tsconfig-paths";
 import strip from "@rollup/plugin-strip";
 
